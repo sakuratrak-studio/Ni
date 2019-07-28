@@ -4,15 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Aiursoft.Pylon.Attributes;
 using Aiursoft.Pylon.Exceptions;
+using Aiursoft.Pylon.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Ni.Data;
+using Ni.Models;
 
 namespace Ni.Controllers
 {
-    [ApiController]
     [APIModelStateChecker]
-    public class CommentController
+    public class CommentController : Controller
     {
         private readonly NiDbContext _dbContext;
 
@@ -28,7 +29,8 @@ namespace Ni.Controllers
                 .Include(t => t.Comments)
                 .Where(t => t.Id == websiteId)
                 .SingleOrDefaultAsync();
-            
+            return Json(new AiurValue<IEnumerable<NiComment>>(website.Comments));
+
         }
     }
 }

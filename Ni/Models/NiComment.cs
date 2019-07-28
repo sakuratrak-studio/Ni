@@ -18,12 +18,12 @@ namespace Ni.Models
         [ForeignKey(nameof(SenderId))]
         public NiUser Sender { get; set; }
 
-        public int SenderId { get; set; }
+        public string SenderId { get; set; }
 
-        [ForeignKey(nameof(WebsiteId))]
-        public NiWebsite Website { get; set; }
+        [ForeignKey(nameof(CommentWebsiteId))]
+        public NiCommentWebsite CommentWebsite { get; set; }
 
-        public int WebsiteId { get; set; }
+        public Guid CommentWebsiteId { get; set; }
 
         [ForeignKey(nameof(ReplyParentId))]
         public NiComment ReplyParent { get; set; }

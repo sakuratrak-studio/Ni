@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ni.Models
 {
-    public class NiWebsite
+    public class NiCommentWebsite
     {
         [Key]
         public Guid Id { get; set; }
@@ -16,12 +16,15 @@ namespace Ni.Models
         
         [ForeignKey(nameof(OwnerId))]
         public NiUser Owner { get; set; }
-        public int OwnerId { get; set; }
+        public string OwnerId { get; set; }
 
         public string AllowOrigin { get; set; }
 
-        [InverseProperty(nameof(NiComment.Website))]
-        public NiComment Comments;
+        public DateTimeOffset CreateTime { get; set; }
+
+
+        [InverseProperty(nameof(NiComment.CommentWebsite))]
+        public IEnumerable<NiComment> Comments { get; set; }
 
 
     }

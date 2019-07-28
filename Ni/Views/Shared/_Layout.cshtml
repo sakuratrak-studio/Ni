@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["title"] - Ni</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="~/lib/bootstrap-material-design/dist/css/bootstrap-material-design.min.css"/>
+    @* <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> *@
+    <link rel="stylesheet" href="~/css/global.css"/>
+
+    @RenderSection("styles", false)
+
+
+</head>
+<body>
+<header>
+    <nav class="ni-navbar navbar navbar-expand-md border-bottom mb-3 navbar-light">
+        <a class="navbar-brand" asp-area="" asp-controller="Website" asp-action="Index">SakuraTrak Studio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse justify-content-between">
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Website" asp-action="Index">About</a>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-nav">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span class="navbar-text">Welcome! @(User.Identity.Name)</span>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})">
+                            <button type="submit" class="nav-link btn btn-link text-dark">Account</button>
+                        </form>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Sign In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="content-wrapper">
+    @RenderBody()
+</div>
+<footer class="border-top footer text-muted">
+    <div class="container">
+        Build with ❤ by EdgeNeko, powered by Aiursoft Platform.
+    </div>
+</footer>
+
+<!--Inject Bootstrap and JQuery-->
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/lib/popper.js/umd/popper.min.js"></script>
+<script src="~/lib/bootstrap-material-design/dist/js/bootstrap-material-design.min.js"></script>
+<script src="~/js/global.js"></script>
+@RenderSection("scripts", false)
+</body>
+</html>

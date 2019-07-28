@@ -9,8 +9,8 @@ namespace Ni.Models
 {
     public class NiUser : AiurUserBase
     {
-        [InverseProperty(nameof(NiWebsite.Owner))]
-        public IEnumerable<NiWebsite> Websites { get; set; }
+        [InverseProperty(nameof(NiCommentWebsite.Owner))]
+        public IEnumerable<NiCommentWebsite> CommentWebsites { get; set; }
 
         [InverseProperty(nameof(NiComment.Sender))]
         public IEnumerable<NiComment> Comments { get; set; }
